@@ -1,4 +1,4 @@
----- Keymaps are automatically loaded on the VeryLazy event
+-- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
@@ -30,4 +30,3 @@ end, { noremap = true, silent = true, desc = "Save file (insert mode)" })
 
 -- Optionally, you can disable the default ':w' mapping if you want to use F9 exclusively
 -- vim.keymap.set('n', ':w', '<Nop>', { noremap = true, silent = true })
---
