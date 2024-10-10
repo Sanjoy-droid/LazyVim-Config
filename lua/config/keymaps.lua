@@ -2,6 +2,9 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.set("n", "<Esc>j", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Esc>k", "<Nop>", { noremap = true, silent = true })
+
 -- Function to save the file
 local function save_file()
   if vim.fn.expand("%") ~= "" then
