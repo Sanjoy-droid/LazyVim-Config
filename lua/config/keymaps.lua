@@ -31,5 +31,7 @@ vim.keymap.set("i", "<F9>", function()
   vim.api.nvim_feedkeys("a", "n", false)
 end, { noremap = true, silent = true, desc = "Save file (insert mode)" })
 
--- Optionally, you can disable the default ':w' mapping if you want to use F9 exclusively
--- vim.keymap.set('n', ':w', '<Nop>', { noremap = true, silent = true })
+-- Select All using / + a (full buffer select)
+vim.keymap.set({ "n", "i", "v" }, "/a", function()
+  vim.cmd("normal! ggVG")
+end, { noremap = true, silent = true, desc = "Select All" })
