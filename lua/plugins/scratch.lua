@@ -32,6 +32,9 @@ return {
           "ideas.txt",
           "work.txt",
           "daily.txt",
+          "draft.txt",
+          "journal.txt",
+          "diary.txt",
         }
 
         for _, file in ipairs(common_files) do
