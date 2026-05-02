@@ -27,12 +27,24 @@ return {
 
         -- Pre-create common scratch files if they don't exist
         local common_files = {
+          "draft-1.txt",
+          "draft-2.txt",
+          "draft-3.txt",
+          "draft-4.txt",
+          "draft-5.txt",
+          "draft-6.txt",
+          "draft-7.txt",
+          "draft-8.txt",
+          "draft-9.txt",
+          "draft-10.txt",
+          "draft-11.txt",
+          "draft-12.txt",
+          "draft-13.txt",
           "todo.txt",
           "project.txt",
           "ideas.txt",
           "work.txt",
           "daily.txt",
-          "draft.txt",
           "journal.txt",
           "diary.txt",
         }
