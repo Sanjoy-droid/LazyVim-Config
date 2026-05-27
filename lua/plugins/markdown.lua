@@ -11,6 +11,14 @@ return {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
       latex = { enabled = false },
+      anti_conceal = { enabled = false },
+      heading = {
+        enabled = true,
+        sign = false, -- don't use sign column
+        icons = { "", "", "", "", "", "" }, -- empty icons = no prefix replacement
+        width = "full", -- full width background highlight
+      },
+      checkbox = { enabled = true },
     },
   },
 }

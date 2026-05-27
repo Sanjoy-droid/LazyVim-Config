@@ -20,9 +20,7 @@ return {
         path = "~/vaults/personal",
       },
     },
-    picker = {
-      name = "telescope.nvim",
-    },
+    picker = { name = "telescope.nvim" },
     completion = {
       blink = true,
       nvim_cmp = false,
@@ -39,17 +37,7 @@ return {
       time_format = "%H:%M",
       substitutions = {},
     },
-    mappings = {
-      ["<CR>"] = {
-        action = function()
-          return require("obsidian").util.smart_action()
-        end,
-        opts = { buffer = true, expr = true },
-      },
-    },
     open_notes_in = "vsplit",
-    ui = {
-      enabled = false,
-    },
+    ui = { enabled = false }, -- render-markdown owns all visual rendering
   },
 }
