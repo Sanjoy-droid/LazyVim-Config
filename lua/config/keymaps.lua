@@ -11,3 +11,5 @@ vim.keymap.set("n", "<leader>uw", function()
   vim.wo.linebreak = vim.wo.wrap
   vim.wo.breakindent = vim.wo.wrap
 end, { desc = "Universal Word Wrap Toggle" })
+
+vim.keymap.set("n", "<M-j>", "ggVG", { desc = "Select All" })
