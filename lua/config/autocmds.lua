@@ -8,7 +8,7 @@
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "text",
+  pattern = { "text", "markdown" },
   callback = function()
     vim.b.codeium_enabled = 0 -- kills windsurf
   end,

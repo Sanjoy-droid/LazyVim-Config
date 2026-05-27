@@ -49,7 +49,7 @@ return {
     },
     open_notes_in = "vsplit",
     ui = {
-      enabled = true,
+      enabled = false,
     },
   },
 }

@@ -3,7 +3,7 @@ return {
     "saghen/blink.cmp",
     opts = {
       enabled = function()
-        return vim.bo.filetype ~= "text"
+        return not vim.tbl_contains({ "text", "markdown" }, vim.bo.filetype)
       end,
       keymap = {
         preset = "default",
