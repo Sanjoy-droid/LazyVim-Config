@@ -11,6 +11,16 @@ return {
     { "<leader>oo", "<cmd>Obsidian quick_switch<cr>", desc = "Open Note" },
     { "<leader>os", "<cmd>Obsidian search<cr>", desc = "Search Notes" },
     { "<leader>od", "<cmd>Obsidian today<cr>", desc = "Daily Note" },
+    {
+      "<CR>",
+      function()
+        return require("obsidian").util.smart_action()
+      end,
+      desc = "Smart Action (follow link / toggle checkbox)",
+      ft = "markdown",
+      expr = true,
+      buffer = true,
+    },
   },
   opts = {
     legacy_commands = false,
@@ -39,5 +49,8 @@ return {
     },
     open_notes_in = "vsplit",
     ui = { enabled = false }, -- render-markdown owns all visual rendering
+    checkbox = {
+      order = { " ", "x" },
+    },
   },
 }
