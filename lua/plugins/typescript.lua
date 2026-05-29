@@ -6,6 +6,7 @@ return {
         vtsls = {
           settings = {
             typescript = {
+              tsserver = { maxTsServerMemory = 1024 },
               suggest = {
                 autoImports = true,
               },
@@ -15,6 +16,7 @@ return {
               },
             },
             javascript = {
+              tsserver = { maxTsServerMemory = 1024 },
               suggest = {
                 autoImports = true,
               },
