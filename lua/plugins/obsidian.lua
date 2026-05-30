@@ -68,23 +68,26 @@ return {
     end,
 
     -- Adds title as alias so quick_switch can find it by name
-    note_frontmatter_func = function(note)
-      if note.title ~= nil then
-        note:add_alias(note.title)
-      end
-      local out = { id = note.id, aliases = note.aliases, tags = note.tags }
-      if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-        for k, v in pairs(note.metadata) do
-          out[k] = v
+    frontmatter = {
+      func = function(note)
+        if note.title ~= nil then
+          note:add_alias(note.title)
         end
-      end
-      return out
-    end,
+        local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+        if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+          for k, v in pairs(note.metadata) do
+            out[k] = v
+          end
+        end
+        return out
+      end,
+    },
 
     -- Most recently modified notes first in picker
-    sort_by = "modified",
-    sort_reversed = true,
-
+    search = {
+      sort_by = "modified",
+      sort_reversed = true,
+    },
     picker = {
       name = "telescope.nvim",
       note_mappings = {
@@ -117,7 +120,7 @@ return {
     },
 
     attachments = {
-      img_folder = "attachments", -- saves pasted images here instead of vault root
+      folder = "attachments", -- saves pasted images here instead of vault root
     },
 
     -- "tab" is NOT valid. Tab behavior handled by keymaps above.
