@@ -2,7 +2,19 @@ return {
   "folke/snacks.nvim",
   opts = {
     image = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = {
+      sections = {
+        {
+          section = "terminal",
+          cmd = "python3 $HOME/.config/nvim/scripts/year_calendar.py; sleep .1",
+          height = 15,
+          padding = 1,
+          ttl = 60 * 60 * 24,
+        },
+        { section = "keys", gap = 1, padding = 1 },
+        { section = "startup" },
+      },
+    },
   },
   keys = {
     {
@@ -33,6 +45,13 @@ return {
         Snacks.terminal()
       end,
       desc = "Toggle Terminal",
+    },
+    {
+      "<c-_>",
+      function()
+        Snacks.terminal()
+      end,
+      desc = "which_key_ignore",
     },
   },
 }
