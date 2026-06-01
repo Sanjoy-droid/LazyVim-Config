@@ -9,6 +9,8 @@ return {
           cmd = "python3 $HOME/.config/nvim/scripts/year_calendar.py; sleep .1",
           height = 15,
           padding = 1,
+          width = 120,
+          indent = -20,
           ttl = 60 * 60 * 24,
         },
         { section = "keys", gap = 1, padding = 1 },

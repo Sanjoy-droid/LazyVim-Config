@@ -10,16 +10,40 @@ weeks_left   = days_left // 7
 percent_gone = (day_of_year / days_in_year) * 100
 
 RESET  = "\033[0m"
-PAST   = "\033[38;5;28m"     # github dark green — committed days
-TODAY  = "\033[1;38;5;46m"   # bright green — today
-FUTURE = "\033[38;5;235m"    # near black — empty squares
-GONE   = "\033[1;38;5;196m"  # red stat
-LEFT   = "\033[1;38;5;40m"   # github green stat
-TITLE  = "\033[1;38;5;255m"  # white title
 MONTH  = "\033[38;5;244m"
 DAYLBL = "\033[38;5;240m"
+GONE   = "\033[1;38;5;203m"
+LEFT   = "\033[1;38;5;40m"
+TITLE  = "\033[1;38;5;255m"
+DIM    = "\033[38;5;244m"
 
-# start from Monday of week containing Jan 1
+def block(fg):
+    return f"\033[{fg}m■ \033[0m"
+
+FUTURE  = block("38;5;242")   
+TODAY   = block("38;5;46")
+OLD     = block("38;5;22")
+MED     = block("38;5;28")
+RECENT  = block("38;5;34")
+HOT     = block("38;5;40")
+SKIP    = "  "
+
+def day_block(dd):
+    if dd.year != year:
+        return SKIP
+    delta = (today - dd).days
+    if dd > today:
+        return FUTURE
+    if dd == today:
+        return TODAY
+    if delta <= 7:
+        return HOT
+    if delta <= 30:
+        return RECENT
+    if delta <= 60:
+        return MED
+    return OLD
+
 jan1  = datetime.date(year, 1, 1)
 start = jan1 - datetime.timedelta(days=jan1.weekday())
 
@@ -32,34 +56,29 @@ while True:
     if d.year > year:
         break
 
-# month first-letter at correct week column
+# month labels row
 month_cols = {}
 for wi, week in enumerate(weeks):
     for dd in week:
         if dd.year == year and dd.day == 1:
-            month_cols[wi] = calendar.month_abbr[dd.month][0]
+            month_cols[wi] = calendar.month_abbr[dd.month][:1]
 
-month_row = "".join(month_cols.get(wi, " ") for wi in range(len(weeks)))
+month_row = "".join(
+    f"{MONTH}{month_cols[wi]}{RESET} " if wi in month_cols else "  "
+    for wi in range(len(weeks))
+)
 
 DAY_LABELS = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]
 
 print()
-print(f"  {TITLE}{year}  ·  Day {day_of_year}/{days_in_year}  ·  {percent_gone:.0f}% gone{RESET}")
+print(f"  {TITLE}{year}{RESET}  {DIM}·{RESET}  {TITLE}Day {day_of_year}/{days_in_year}{RESET}  {DIM}·{RESET}  {TITLE}{percent_gone:.0f}% gone{RESET}")
 print()
-print(f"     {MONTH}{month_row}{RESET}")
+print(f"     {month_row}")
 
 for row in range(7):
     line = f"{DAYLBL}{DAY_LABELS[row]}{RESET} "
     for week in weeks:
-        dd = week[row]
-        if dd.year != year:
-            line += " "
-        elif dd < today:
-            line += f"{PAST}▓{RESET}"
-        elif dd == today:
-            line += f"{TODAY}█{RESET}"
-        else:
-            line += f"{FUTURE}░{RESET}"
+        line += day_block(week[row])
     print("  " + line)
 
 print()
