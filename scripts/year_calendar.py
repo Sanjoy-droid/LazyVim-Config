@@ -10,23 +10,25 @@ weeks_left   = days_left // 7
 percent_gone = (day_of_year / days_in_year) * 100
 
 RESET  = "\033[0m"
-MONTH  = "\033[38;5;244m"
-DAYLBL = "\033[38;5;240m"
-GONE   = "\033[1;38;5;203m"
-LEFT   = "\033[1;38;5;40m"
+MONTH  = "\033[38;5;249m"   # was 244 gray → LazyVim cursor blue
+DAYLBL = "\033[38;5;249m"   # was 240 gray → LazyVim cursor blue
+GONE = "\033[1;38;5;203m"   # warm salmon-red
+LEFT   = "\033[1;38;5;35m"  # matches FUTURE block
 TITLE  = "\033[1;38;5;255m"
 DIM    = "\033[38;5;244m"
 
 def block(fg):
     return f"\033[{fg}m■ \033[0m"
 
-FUTURE  = block("38;5;242")   
-TODAY   = block("38;5;46")
-OLD     = block("38;5;22")
-MED     = block("38;5;28")
-RECENT  = block("38;5;34")
-HOT     = block("38;5;40")
+# Graph blocks — red gradient (dark → bright, old → recent)
+FUTURE = block("38;5;35")    # was 242 gray → now darkest green (dim, "not yet lived")
+TODAY   = block("38;5;196")   # brightest red
+OLD     = block("38;5;52")    # darkest red
+MED     = block("38;5;88")    # dark red
+RECENT  = block("38;5;124")   # mid red
+HOT     = block("38;5;160")   # bright red
 SKIP    = "  "
+
 
 def day_block(dd):
     if dd.year != year:
@@ -82,6 +84,6 @@ for row in range(7):
     print("  " + line)
 
 print()
-print(f"  {GONE}▓ {day_of_year} days gone  ·  {percent_gone:.1f}% of {year} is dead{RESET}")
-print(f"  {LEFT}░ {days_left} days  ·  {weeks_left} weeks still ahead{RESET}")
+print(f"  {GONE}■ {day_of_year} days gone  ·  {percent_gone:.1f}% of {year} is dead{RESET}")
+print(f"  {LEFT}■ {days_left} days  ·  {weeks_left} weeks still ahead{RESET}")
 print()
