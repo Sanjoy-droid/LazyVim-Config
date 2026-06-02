@@ -10,7 +10,7 @@ return {
           height = 15,
           padding = 1,
           width = 120,
-          indent = -20,
+          indent = -25,
           ttl = 60 * 60 * 24,
         },
         { section = "keys", gap = 1, padding = 1 },
