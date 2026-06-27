@@ -10,13 +10,6 @@ return {
   },
   keys = {
     {
-      ".",
-      function()
-        require("snacks").scratch()
-      end,
-      desc = "Toggle Scratch Buffer",
-    },
-    {
       "ns",
       function()
         local scratch_dir = vim.fn.stdpath("data") .. "/scratch"
