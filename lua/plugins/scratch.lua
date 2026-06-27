@@ -5,11 +5,10 @@ return {
   },
   opts = {
     scratch = {
-      ft = "markdown", -- default to markdown since that's what you actually use
+      ft = "markdown",
     },
   },
   keys = {
-    -- Default scratch
     {
       ".",
       function()
@@ -17,7 +16,6 @@ return {
       end,
       desc = "Toggle Scratch Buffer",
     },
-    -- Telescope selector for scratch files
     {
       "ns",
       function()
@@ -48,7 +46,7 @@ return {
         require("telescope.builtin").find_files({
           prompt_title = "Select Scratch File",
           cwd = scratch_dir,
-          find_command = { "rg", "--files", "--glob", "!*.meta" },
+          find_command = { "rg", "--files", "--glob", "draft*.md", "--glob", "!*.meta" },
           attach_mappings = function(prompt_bufnr, map)
             local actions = require("telescope.actions")
             local action_state = require("telescope.actions.state")
@@ -59,7 +57,7 @@ return {
                 local filename = selection.value:gsub("%.md$", "")
                 require("snacks").scratch({
                   name = filename,
-                  ft = "markdown", -- match the actual file extension
+                  ft = "markdown",
                 })
               end
             end)
